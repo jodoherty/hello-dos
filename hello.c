@@ -6,7 +6,7 @@
 #include "myputs.h"
 #include "joystick.h"
 
-int main()
+int main(void)
 {
   const char *s = "Hello, World\n";
   struct joystick_state state, prev;

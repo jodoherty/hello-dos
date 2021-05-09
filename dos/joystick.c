@@ -1,5 +1,5 @@
 #include <dpmi.h>
-#include "joystick.h"
+#include "../joystick.h"
 
 static void query_joystick_axes(struct joystick_state *state)
 {
