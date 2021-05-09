@@ -1,25 +1,22 @@
-#include <dpmi.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-static void myputc(char ch)
-{
-  __dpmi_regs r;
-  r.h.ah = 0x02;
-  r.h.dl = ch;
-  __dpmi_int(0x21, &r);
-}
-
-static void myputs(const char *s) {
-  while (*s) {
-    myputc(*s);
-    s++;
-  }
-}
+#include "myputs.h"
+#include "joystick.h"
 
 int main()
 {
   const char *s = "Hello, World\n";
+  struct joystick_state state, prev;
   myputs(s);
-  myputs(s);
-  myputs(s);
-  return 0;
+  query_joystick(&state);
+  prev = state;
+  query_joystick(&state);
+
+  printf("%d %d %d %d -> %d %d %d %d\n", prev.x, prev.y, prev.b0, prev.b1,
+                                         state.x, state.y, state.b0, state.b1);
+
+  return EXIT_SUCCESS;
 }
