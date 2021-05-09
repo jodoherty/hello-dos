@@ -6,6 +6,8 @@
 #include "myputs.h"
 #include "joystick.h"
 
+#include "../vendor/image.h"
+
 int main(void)
 {
     const char *s = "Hello, World\n";
@@ -17,6 +19,12 @@ int main(void)
 
     printf("%d %d %d %d -> %d %d %d %d\n", prev.x, prev.y, prev.b0,
 	   prev.b1, state.x, state.y, state.b0, state.b1);
+
+    int width, height, channels;
+    unsigned char *data =
+	stbi_load("assets/test.png", &width, &height, &channels, 0);
+    printf("%d %d %d\n", width, height, channels);
+    stbi_image_free(data);
 
     return EXIT_SUCCESS;
 }

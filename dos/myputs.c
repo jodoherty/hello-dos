@@ -1,5 +1,5 @@
 #include <dpmi.h>
-#include "../myputs.h"
+#include "../common/myputs.h"
 
 static void myputc(char ch)
 {
