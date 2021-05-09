@@ -7,7 +7,7 @@ all: hello.exe
 .PHONY: all
 
 clean:
-	$(RM) hello.exe common/*.o dos/*.o *~ dos/*~ vendor/*.o vendor/*~
+	$(RM) hello.exe common/*.o dos/*.o common/*~ dos/*~ vendor/*.o vendor/*~
 .PHONY: clean
 
 format:
