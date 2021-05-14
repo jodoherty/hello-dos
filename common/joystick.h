@@ -1,4 +1,9 @@
+
 #include <stdbool.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 struct joystick_state {
     int y;
@@ -8,3 +13,7 @@ struct joystick_state {
 };
 
 void query_joystick(struct joystick_state *state);
+
+#ifdef __cplusplus
+}
+#endif

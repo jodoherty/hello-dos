@@ -8,7 +8,9 @@
 
 #include "../vendor/image.h"
 
-int main(void)
+#include <iostream>
+
+int main()
 {
     const char *s = "Hello, World\n";
     struct joystick_state state, prev;
@@ -25,6 +27,9 @@ int main(void)
 	stbi_load("assets/test.png", &width, &height, &channels, 0);
     printf("%d %d %d\n", width, height, channels);
     stbi_image_free(data);
+
+
+    std::cout << "C++ Works!" << std::endl;
 
     return EXIT_SUCCESS;
 }

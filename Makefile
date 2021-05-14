@@ -1,7 +1,9 @@
 CC=i586-pc-msdosdjgpp-gcc
+CXX=i586-pc-msdosdjgpp-g++
 LD=i586-pc-msdosdjgpp-ld
 AS=i586-pc-msdosdjgpp-as
 CFLAGS=-O2
+CXXFLAGS=-O2
 
 all: hello.exe
 .PHONY: all
@@ -16,14 +18,20 @@ format:
 .PHONY: format
 
 hello.exe: common/hello.o vendor/image.o dos/myputs.o dos/joystick.o
-	$(CC) -o $@ $^
+	$(CXX) -o $@ $^
 
 %.o: %.c
 	$(CC) -Wall -pedantic -std=c17 -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
+%.o: %.cc
+	$(CXX) -Wall -pedantic -std=c++2a -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@
+
 # A lot of DOS-specific DJGPP headers won't work if we use strict ISO C.
 dos/%.o: dos/%.c
 	$(CC) -Wall -pedantic -std=gnu17 -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+dos/%.o: dos/%.cc
+	$(CXX) -Wall -pedantic -std=gnu++2a -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@
 
 vendor/%.o: vendor/%.c
 	$(CC) -std=gnu17 -c $(CFLAGS) $(CPPFLAGS) $< -o $@
