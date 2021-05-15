@@ -17,3 +17,10 @@ convenience script:
 ```
 ./run.sh
 ```
+
+If you use this as a project template, you can use the following as your build
+and run one-liner:
+
+```
+./djgpp.sh make && ./run.sh
+```
