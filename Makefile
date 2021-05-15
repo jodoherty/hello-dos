@@ -15,6 +15,7 @@ all: directories bin/hello.exe
 directories:
 	@mkdir -p bin obj/dos obj/vendor
 	@cp runtime/CWSDPMI.EXE bin/
+	@cp assets/test.png bin/
 .PHONY: directories
 
 clean:
@@ -39,4 +40,7 @@ obj/dos/%.o: src/dos/%.cc
 
 obj/vendor/%.o: src/vendor/%.c
 	$(CC) -std=gnu17 -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+obj/vendor/%.o: src/vendor/%.cc
+	$(CXX) -std=gnu++2a -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@
 

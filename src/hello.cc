@@ -24,7 +24,7 @@ int main()
 
     int width, height, channels;
     unsigned char *data =
-	stbi_load("assets/test.png", &width, &height, &channels, 0);
+	stbi_load("test.png", &width, &height, &channels, 0);
     printf("%d %d %d\n", width, height, channels);
     stbi_image_free(data);
 
