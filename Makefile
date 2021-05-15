@@ -5,33 +5,38 @@ AS=i586-pc-msdosdjgpp-as
 CFLAGS=-O2
 CXXFLAGS=-O2
 
-all: hello.exe
+dos_objects=obj/dos/myputs.o obj/dos/joystick.o
+vendor_objects=obj/vendor/image.o
+hello_objects=obj/hello.o $(dos_objects) $(vendor_objects)
+
+all: directories bin/hello.exe
 .PHONY: all
 
+directories:
+	@mkdir -p bin obj/dos obj/vendor
+	@cp runtime/CWSDPMI.EXE bin/
+.PHONY: directories
+
 clean:
-	$(RM) hello.exe common/*.o dos/*.o common/*~ dos/*~ vendor/*.o vendor/*~
+	$(RM) -r bin obj
 .PHONY: clean
 
-format:
-	find common dos -name '*.c' -type f -exec indent -kr '{}' ';'
-	find common dos -name '*.h' -type f -exec indent -kr '{}' ';'
-.PHONY: format
-
-hello.exe: common/hello.o vendor/image.o dos/myputs.o dos/joystick.o
+bin/hello.exe: $(hello_objects)
 	$(CXX) -o $@ $^
 
-%.o: %.c
+obj/%.o: src/%.c
 	$(CC) -Wall -pedantic -std=c17 -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
-%.o: %.cc
+obj/%.o: src/%.cc
 	$(CXX) -Wall -pedantic -std=c++2a -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@
 
 # A lot of DOS-specific DJGPP headers won't work if we use strict ISO C.
-dos/%.o: dos/%.c
+obj/dos/%.o: src/dos/%.c
 	$(CC) -Wall -pedantic -std=gnu17 -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
-dos/%.o: dos/%.cc
+obj/dos/%.o: src/dos/%.cc
 	$(CXX) -Wall -pedantic -std=gnu++2a -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@
 
-vendor/%.o: vendor/%.c
+obj/vendor/%.o: src/vendor/%.c
 	$(CC) -std=gnu17 -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+

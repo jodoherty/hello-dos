@@ -2,4 +2,8 @@
 
 image=docker.io/jodoherty/djgpp:gcc-11.1.0
 
-docker run --user $(id -u):$(id -g) -it --rm -v `pwd`:/home/djgpp/src $image "$@"
+exec docker run \
+       -it --rm \
+       -v `pwd`:/home/djgpp/src \
+       --user $(id -u):$(id -g) \
+       $image "$@"

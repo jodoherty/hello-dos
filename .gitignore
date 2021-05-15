@@ -1,5 +1,4 @@
-hello.exe
-*.o
 *.swp
 *~
-
+/bin/
+/obj/

@@ -6,7 +6,7 @@
 #include "myputs.h"
 #include "joystick.h"
 
-#include "../vendor/image.h"
+#include "./vendor/image.h"
 
 #include <iostream>
 
