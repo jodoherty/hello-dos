@@ -24,3 +24,24 @@ and run one-liner:
 ```
 ./djgpp.sh make && ./run.sh
 ```
+
+## What next?
+
+Looking for something to do with this project skeleton? Check out David
+Brackeen's 256-Color VGA Programming in C series. It's a classic and includes
+DJGPP examples for all of the topics.
+
+http://www.brackeen.com/vga/
+
+The example third-party image loading code in the vendor directory is from the
+stb single-file publid domain libraries collection.
+
+https://github.com/nothings/stb
+
+Definitely check it out.
+
+## What about licensing?
+
+This repository is in the public domain. Feel free to clone and use it as a
+template for your own project without attribution.
+
